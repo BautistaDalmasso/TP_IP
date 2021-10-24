@@ -56,9 +56,9 @@ def generarPosicion(listaPos,listaLetras,inicio,fin):
     for elem in listaLetras:
         listaPos.append(random.randrange(inicio,fin,10))
 
-    genPos(posicionesIzq,colIzq,iizq,fizq)
-    genPos(posicionesMedio,colCen,imedio,fmedio)
-    genPos(posicionesDer,colDer,ider,fder)
+    generarPos(posicionesIzq,colIzq,iizq,fizq)
+    generarPos(posicionesMedio,colCen,imedio,fmedio)
+    generarPos(posicionesDer,colDer,ider,fder)
 
     print(posicionesIzq)
     print(posicionesMedio)
