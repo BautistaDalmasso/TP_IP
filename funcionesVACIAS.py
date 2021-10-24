@@ -5,9 +5,50 @@ import random
 import math
 
 
+
+def generarPosicion(listaPosiciones,inicio,fin):
+
+    posicion = [] ## guardará x, y
+    posicion.append(random.randrange(inicio,fin,10)) ## valor de X
+    posicion.append(35) ## valor de Y de primera línea
+
+    return posicion
+
+
+def separarPalabra(palabra):
+
+    primerCorte = random.randrange(0, len(palabra) - len(palabra)//2)
+    segundoCorte = random.randrange(primerCorte, len(palabra))
+
+    cortes = []
+    cortes.append(primerCorte)
+    cortes.append(segundoCorte)
+    return cortes
+
+
 def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer):
     #elige una palabra de la lista y la carga en las 3 listas
     # y les inventa una posicion para que aparezca en la columna correspondiente
+
+    palabra = lista[random.randrange(0, len(lista))]
+    cortes = separarPalabra(palabra)
+
+    i = 0
+
+    for letra in palabra:
+
+        if i <= cortes[0]:
+            listaIzq.append(letra)
+            posicionesIzq.append(generarPosicion(posicionesIzq,INICIO_IZQ,FIN_IZQ))
+        elif i <= cortes[1]:
+            listaMedio.append(letra)
+            posicionesMedio.append(generarPosicion(posicionesMedio,INICIO_MED,FIN_MED))
+        else:
+            listaDer.append(letra)
+            posicionesDer.append(generarPosicion(posicionesDer,INICIO_DER,FIN_DER))
+        i = i + 1
+
+
     pass
 
 
@@ -38,28 +79,6 @@ def esValida(lista, candidata, listaIzq, listaMedio, listaDerecha):
     pass
 
 
-def inventaPosicion():
-    posicionesIzq=[] #de 5 a 261
-    posicionesMedio=[] #de 271 a 527
-    posicionesDer=[] #de 537 a 793
-    iizq=5
-    fizq=261
-    paso=10
 
-    imedio=271
-    fmedio=527
 
-    ider= 537
-    fder=793
 
-def generarPosicion(listaPos,listaLetras,inicio,fin):
-    for elem in listaLetras:
-        listaPos.append(random.randrange(inicio,fin,10))
-
-    genPos(posicionesIzq,colIzq,iizq,fizq)
-    genPos(posicionesMedio,colCen,imedio,fmedio)
-    genPos(posicionesDer,colDer,ider,fder)
-
-    print(posicionesIzq)
-    print(posicionesMedio)
-    print(posicionesDer)

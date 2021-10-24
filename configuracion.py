@@ -12,4 +12,15 @@ COLOR_TEXTO = (200,200,200)
 COLOR_TIEMPO_FINAL = (200,20,10)
 
 
+##posicionesIzq=[] #de 5 a 261
+##posicionesMedio=[] #de 271 a 527
+##posicionesDer=[] #de 537 a 793
+INICIO_IZQ=5
+FIN_IZQ=261
 
+
+INICIO_MED=271
+FIN_MED=527
+
+INICIO_DER= 537
+FIN_DER=793
