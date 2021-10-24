@@ -35,7 +35,7 @@ def main():
         posicionesDer = []
         lista = []
 
-        archivo= open("lemario.txt","r",encoding='latin-1'))
+        archivo= open("lemario.txt","r",encoding='latin-1')
         for linea in archivo.readlines():
             lista.append(linea[0:-1])
 
