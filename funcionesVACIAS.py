@@ -36,3 +36,30 @@ def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
 def esValida(lista, candidata, listaIzq, listaMedio, listaDerecha):
     #devuelve True si candidata cumple con los requisitos
     pass
+
+
+def inventaPosicion():
+    posicionesIzq=[] #de 5 a 261
+    posicionesMedio=[] #de 271 a 527
+    posicionesDer=[] #de 537 a 793
+    iizq=5
+    fizq=261
+    paso=10
+
+    imedio=271
+    fmedio=527
+
+    ider= 537
+    fder=793
+
+def generarPosicion(listaPos,listaLetras,inicio,fin):
+    for elem in listaLetras:
+        listaPos.append(random.randrange(inicio,fin,10))
+
+    genPos(posicionesIzq,colIzq,iizq,fizq)
+    genPos(posicionesMedio,colCen,imedio,fmedio)
+    genPos(posicionesDer,colDer,ider,fder)
+
+    print(posicionesIzq)
+    print(posicionesMedio)
+    print(posicionesDer)
