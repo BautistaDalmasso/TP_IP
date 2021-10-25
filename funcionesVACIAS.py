@@ -12,6 +12,10 @@ def generarPosicion(listaPosiciones,inicio,fin):
     posicion.append(random.randrange(inicio,fin,10)) ## valor de X
     posicion.append(35) ## valor de Y de primera línea
 
+    # Cambia el valor de x si esta cerca de otra posicion
+    while estaCerca(posicion, listaPosiciones):
+        posicion[0] = random.randrange(inicio,fin,10)
+
     return posicion
 
 
@@ -63,7 +67,12 @@ def actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posiciones
 
 def estaCerca(elem, lista):
     #es opcional, se usa para evitar solapamientos
-    pass
+
+    # |posicion1 - posicion2| = distancia entre las dos poi
+    for posicion in lista:
+        if abs(elem[0] - posicion[0]) <= DISTANCIA_MIN and abs(elem[1] - posicion[1]) <= DISTANCIA_MIN:
+            return True
+    return False
 
 def Puntos(candidata):
     #devuelve el puntaje que le corresponde a candidata
