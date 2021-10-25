@@ -10,7 +10,7 @@ COLOR_LETRAS = (20,200,20)
 COLOR_FONDO = (0,0,0)
 COLOR_TEXTO = (200,200,200)
 COLOR_TIEMPO_FINAL = (200,20,10)
-
+#comentario de prueba, borrar
 
 ##posicionesIzq=[] #de 5 a 261
 ##posicionesMedio=[] #de 271 a 527
