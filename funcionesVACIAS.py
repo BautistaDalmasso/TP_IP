@@ -21,7 +21,7 @@ def generarPosicion(listaPosiciones,inicio,fin):
 
 def separarPalabra(palabra):
 
-    primerCorte = random.randrange(0, len(palabra) - len(palabra)//2)
+    primerCorte = random.randrange(0, len(palabra) - len(palabra)//2) # se puede poner (0, len(palabra)//2) solamente
     segundoCorte = random.randrange(primerCorte, len(palabra))
 
     cortes = []
