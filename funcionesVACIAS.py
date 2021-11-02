@@ -20,8 +20,8 @@ def generarPosicion(listaPosiciones,inicio,fin):
 
 
 def separarPalabra(palabra):
-
-    primerCorte = random.randrange(0, len(palabra) - len(palabra)//2) # se puede poner (0, len(palabra)//2) solamente
+    # Prevenimos que la primer columna tenga demasiado peso.
+    primerCorte = random.randrange(0, len(palabra) - len(palabra)//2)
     segundoCorte = random.randrange(primerCorte, len(palabra))
 
     cortes = []
@@ -51,10 +51,6 @@ def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicion
             listaDer.append(letra)
             posicionesDer.append(generarPosicion(posicionesDer,INICIO_DER,FIN_DER))
         i = i + 1
-
-
-    pass
-
 
 def bajar(lista, posiciones):
     # hace bajar las letras y elimina las que tocan el piso
