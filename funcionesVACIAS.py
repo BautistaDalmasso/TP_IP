@@ -64,7 +64,7 @@ def actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posiciones
 def estaCerca(elem, lista):
     #es opcional, se usa para evitar solapamientos
 
-    # |posicion1 - posicion2| = distancia entre las dos poi
+    # |posicion1 - posicion2| = distancia entre las dos posiciones
     for posicion in lista:
         if abs(elem[0] - posicion[0]) <= DISTANCIA_MIN and abs(elem[1] - posicion[1]) <= DISTANCIA_MIN:
             return True
