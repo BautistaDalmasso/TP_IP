@@ -33,7 +33,7 @@ def main():
         posicionesIzq = []
         posicionesMedio = []
         posicionesDer = []
-        lista = []
+        lista = [] ## guarda el lemario
 
         archivo= open("lemario.txt","r",encoding='latin-1')
         for linea in archivo.readlines():

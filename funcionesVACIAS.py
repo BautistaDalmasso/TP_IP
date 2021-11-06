@@ -29,6 +29,11 @@ def separarPalabra(palabra):
     cortes.append(segundoCorte)
     return cortes
 
+def borrar(lista,posiciones,indicesBorrar):
+    for i in range(len(indicesBorrar)-1,-1,-1):
+        indiceBorrar = indicesBorrar[i]
+        posiciones.pop(indiceBorrar)
+        lista.pop(indiceBorrar)
 
 def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer):
     #elige una palabra de la lista y la carga en las 3 listas
@@ -54,12 +59,26 @@ def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicion
 
 def bajar(lista, posiciones):
     # hace bajar las letras y elimina las que tocan el piso
-    pass
+    indicesBorrar = []
+    for i in range(0,len(posiciones)):
+        posicion = posiciones[i]
+        nuevoY = posicion[1]+25
+        if nuevoY<(PISO-10):
+            posiciones[i] = (posicion[0],posicion[1]+10)
+        else:
+            indicesBorrar.append(i)
+    borrar(lista,posiciones,indicesBorrar)
+
 
 def actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer):
     ## llama a otras funciones para bajar bajar las letras, eliminar las que tocan el piso y
+    bajar(listaIzq,posicionesIzq)
+    bajar(listaMedio,posicionesMedio)
+    bajar(listaDer,posicionesDer)
     ## cargar nuevas letras a la pantalla (esto puede no hacerse todo el tiempo para que no se llene de letras la pantalla)
-    pass
+    cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer)
+
+
 
 def estaCerca(elem, lista):
     #es opcional, se usa para evitar solapamientos
