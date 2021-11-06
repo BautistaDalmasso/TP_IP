@@ -13,8 +13,13 @@ def generarPosicion(listaPosiciones,inicio,fin):
     posicion.append(35) ## valor de Y de primera línea
 
     # Cambia el valor de x si esta cerca de otra posicion
+    i = 0
     while estaCerca(posicion, listaPosiciones):
         posicion[0] = random.randrange(inicio,fin,10)
+        i = i + 1
+        # Si no encuentra lugar, enviá una posición aunque sea invalida.
+        if i > 25:
+            return posicion
 
     return posicion
 
@@ -34,6 +39,14 @@ def borrar(lista,posiciones,indicesBorrar):
         posiciones.pop(indiceBorrar)
         lista.pop(indiceBorrar)
 
+# Se asegura de que haya espacio en la primera línea para agregar letras.
+def tieneEspacio(posiciones):
+    cantidad = 0
+    for posicion in posiciones:
+        if posicion[1] == 35:
+            cantidad = cantidad + 1
+    return cantidad < MAX_LETRA_COLUMNA
+
 def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer):
     #elige una palabra de la lista y la carga en las 3 listas
     # y les inventa una posicion para que aparezca en la columna correspondiente
@@ -42,16 +55,16 @@ def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicion
     cortes = separarPalabra(palabra)
 
     i = 0
-
     for letra in palabra:
-
-        if i <= cortes[0]:
+        # Pueden llegar a salir palabras cortadas.
+        # TODO: ver si podemos evitar que se corten.
+        if i <= cortes[0] and tieneEspacio(posicionesIzq):
             listaIzq.append(letra)
             posicionesIzq.append(generarPosicion(posicionesIzq,INICIO_IZQ,FIN_IZQ))
-        elif i <= cortes[1]:
+        elif i <= cortes[1] and tieneEspacio(posicionesMedio):
             listaMedio.append(letra)
             posicionesMedio.append(generarPosicion(posicionesMedio,INICIO_MED,FIN_MED))
-        else:
+        elif tieneEspacio(posicionesDer):
             listaDer.append(letra)
             posicionesDer.append(generarPosicion(posicionesDer,INICIO_DER,FIN_DER))
         i = i + 1
