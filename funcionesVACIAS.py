@@ -5,7 +5,6 @@ import random
 import math
 
 
-
 def generarPosicion(listaPosiciones,inicio,fin):
 
     posicion = [] ## guardará x, y
@@ -119,6 +118,7 @@ def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
     puntos=0
     if esValida(lista, candidata, listaIzq, listaMedio, listaDerecha) == True:
         puntos = Puntos(candidata)
+        lista.pop(dondeEsta(lista, candidata))
     return puntos
 
 
@@ -126,7 +126,6 @@ def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
     #devuelve True si candidata cumple con los requisitos
     if estaEnLista(lista, candidata):
         restoCandidata = candidata
-
         restoCandidata = acortarCandidata(restoCandidata,listaIzq)
         restoCandidata = acortarCandidata(restoCandidata,listaMedio)
         restoCandidata = acortarCandidata(restoCandidata,listaDer)
@@ -148,19 +147,21 @@ def acortarCandidata(restoCandidata, lista): ##listaIzq, Med o Der
     return restoNuevo
 
 
-def estaEnLista(lista, candidata):
+def estaEnLista(lista, elem_a_buscar):
     for elem in lista:
-        if elem == candidata:
+        if elem == elem_a_buscar:
             return True
     return False
 
-def vecesEnLista(lista, candidata):
+def vecesEnLista(lista, elem_a_buscar):
     cantidad = 0
     for elem in lista:
-        if elem == candidata:
+        if elem == elem_a_buscar:
             cantidad = cantidad + 1
     return cantidad
 
-
-
-
+def dondeEsta(lista, elem_a_buscar):
+    for i in range(len(lista)):
+        if lista[i] == elem_a_buscar:
+            return i
+    return -1
