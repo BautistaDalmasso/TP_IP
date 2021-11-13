@@ -89,7 +89,9 @@ def actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posiciones
         bajar(listaMedio,posicionesMedio)
         bajar(listaDer,posicionesDer)
     ## cargar nuevas letras a la pantalla (esto puede no hacerse todo el tiempo para que no se llene de letras la pantalla)
-    cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer)
+
+    if random.randrange(1,101,1) < 30: ## acorta cantidad de palabras que aparecen
+        cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer)
 
 def estaCerca(elem, lista):
     #es opcional, se usa para evitar solapamientos
@@ -102,24 +104,27 @@ def estaCerca(elem, lista):
 
 def Puntos(candidata):
     #devuelve el puntaje que le corresponde a candidata
-    vocales = [a,e,i,o,u]
-    consonDif = [j,k,q,w,x,y,z]
-    consonFac = [b,c,d,f,g,h,l,m,n,p,r,s,t,v]
+    vocales = ["a","e","i","o","u"]
+    consonDif = ["j","k","q","w","x","y","z"]
+    consonFac = ["b","c","d","f","g","h","l","m","n","p","r","s","t","v"]
     puntos = 0
     for letra in candidata:
-        puntos = puntos + vecesEn(vocales,letra)*1
-        puntos = puntos + vecesEn(consonDif,letra)*2
-        puntos = puntos + vecesEn(consonFac,letra)*5
+        puntos = puntos + vecesEnLista(vocales, letra) * 1
+        puntos = puntos + vecesEnLista(consonDif, letra) * 5
+        puntos = puntos + vecesEnLista(consonFac, letra) * 2
     return puntos
 
 def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
     #chequea que candidata sea correcta en cuyo caso devuelve el puntaje y 0 si no es correcta
-    pass
+    puntos=0
+    if esValida(lista, candidata, listaIzq, listaMedio, listaDerecha) == True:
+        puntos = Puntos(candidata)
+    return puntos
 
 
 def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
     #devuelve True si candidata cumple con los requisitos
-    if estaEn(lista,candidata):
+    if estaEnLista(lista, candidata):
         restoCandidata = candidata
 
         restoCandidata = acortarCandidata(restoCandidata,listaIzq)
@@ -129,22 +134,27 @@ def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
             return True
     return False
 
-def acortarCandidata(string, lista):
-    restoCandidata = string
-    ## si la primera letra de restoCandidata está en lista, la popeamos
-    while estaEn(restoCandidata[0],lista):
-        restoCandidata.pop(0)
-    return restoCandidata
+def acortarCandidata(restoCandidata, lista): ##listaIzq, Med o Der
+    restoNuevo = restoCandidata
+    ## si la primera letra de restoCandidata está en lista, la quitamos
+    for caracter in restoCandidata:
+        if not estaEnLista(lista,caracter):
+            return restoNuevo
+        else:
+            aux=""
+            for i in range(len(restoNuevo)-1,0,-1):
+                aux=restoNuevo[i] + aux
+            restoNuevo = aux
+    return restoNuevo
 
-def estaEn(lista,candidata):
+
+def estaEnLista(lista, candidata):
     for elem in lista:
         if elem == candidata:
             return True
     return False
 
-
-
-def vecesEn(lista,candidata):
+def vecesEnLista(lista, candidata):
     cantidad = 0
     for elem in lista:
         if elem == candidata:
