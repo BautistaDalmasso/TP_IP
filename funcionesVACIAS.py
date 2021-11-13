@@ -106,7 +106,7 @@ def Puntos(candidata):
     #devuelve el puntaje que le corresponde a candidata
     vocales = ["a","e","i","o","u"]
     consonDif = ["j","k","q","w","x","y","z"]
-    consonFac = ["b","c","d","f","g","h","l","m","n","p","r","s","t","v"]
+    consonFac = ["b","c","d","f","g","h","l","m","n","ñ","p","r","s","t","v"]
     puntos = 0
     for letra in candidata:
         puntos = puntos + vecesEnLista(vocales, letra) * 1
