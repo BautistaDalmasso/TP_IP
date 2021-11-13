@@ -102,17 +102,54 @@ def estaCerca(elem, lista):
 
 def Puntos(candidata):
     #devuelve el puntaje que le corresponde a candidata
-    pass
+    vocales = [a,e,i,o,u]
+    consonDif = [j,k,q,w,x,y,z]
+    consonFac = [b,c,d,f,g,h,l,m,n,p,r,s,t,v]
+    puntos = 0
+    for letra in candidata:
+        puntos = puntos + vecesEn(vocales,letra)*1
+        puntos = puntos + vecesEn(consonDif,letra)*2
+        puntos = puntos + vecesEn(consonFac,letra)*5
+    return puntos
 
 def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
     #chequea que candidata sea correcta en cuyo caso devuelve el puntaje y 0 si no es correcta
     pass
 
 
-def esValida(lista, candidata, listaIzq, listaMedio, listaDerecha):
+def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
     #devuelve True si candidata cumple con los requisitos
-    pass
+    if estaEn(lista,candidata):
+        restoCandidata = candidata
 
+        restoCandidata = acortarCandidata(restoCandidata,listaIzq)
+        restoCandidata = acortarCandidata(restoCandidata,listaMedio)
+        restoCandidata = acortarCandidata(restoCandidata,listaDer)
+        if restoCandidata == "":
+            return True
+    return False
+
+def acortarCandidata(string, lista):
+    restoCandidata = string
+    ## si la primera letra de restoCandidata está en lista, la popeamos
+    while estaEn(restoCandidata[0],lista):
+        restoCandidata.pop(0)
+    return restoCandidata
+
+def estaEn(lista,candidata):
+    for elem in lista:
+        if elem == candidata:
+            return True
+    return False
+
+
+
+def vecesEn(lista,candidata):
+    cantidad = 0
+    for elem in lista:
+        if elem == candidata:
+            cantidad = cantidad + 1
+    return cantidad
 
 
 
