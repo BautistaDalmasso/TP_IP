@@ -14,11 +14,10 @@ def main():
         #Centrar la ventana y despues inicializar pygame
         os.environ["SDL_VIDEO_CENTERED"] = "1"
         pygame.init()
-        #pygame.mixer.init()
-        #pygame.mixer.music.load("musicaFondo.mp3")
-        #pygame.mixer.music.play() ##admite entero, cantidad de veces que repite el sonido
-
-
+        pygame.mixer.init()
+        pygame.mixer.music.load("Sonidos/fondo.mp3")
+        pygame.mixer.music.play() ##admite entero, cantidad de veces que repite el sonido
+        pygame.mixer.music.set_volume(0.1)
 
 
         #Preparar la ventana
@@ -101,6 +100,7 @@ def main():
             #Esperar el QUIT del usuario
             for e in pygame.event.get():
                 if e.type == QUIT:
+                    pygame.mixer.quit()
                     pygame.quit()
                     return
 
