@@ -11,6 +11,9 @@ COLOR_FONDO = (0,0,0)
 COLOR_TEXTO = (200,200,200)
 COLOR_TIEMPO_FINAL = (200,20,10)
 
+X = 0
+Y = 1
+
 ## Extremos de las columnas
 INICIO_IZQ=5
 FIN_IZQ=250
@@ -30,3 +33,8 @@ MAX_LETRA_COLUMNA = 9
 ## Pixel en donde se dibuja el piso
 PISO = 527
 
+VALORVOCAL = 1
+VALORCONSONFAC = 2
+VALORCONSONDIF = 5
+
+PALABRA_SECRETA = "matrix"

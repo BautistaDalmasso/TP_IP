@@ -14,7 +14,7 @@ def generarPosicion(listaPosiciones,inicio,fin):
     # Cambia el valor de x si esta cerca de otra posicion
     i = 0
     while estaCerca(posicion, listaPosiciones):
-        posicion[0] = random.randrange(inicio,fin,10)
+        posicion[X] = random.randrange(inicio,fin,10)
         i = i + 1
         # Si no encuentra lugar, enviá una posición aunque sea invalida.
         if i > 25:
@@ -42,7 +42,7 @@ def borrar(lista,posiciones,indicesBorrar):
 def tieneEspacio(posiciones):
     cantidad = 0
     for posicion in posiciones:
-        if posicion[1] == 35:
+        if posicion[Y] == 35:
             cantidad = cantidad + 1
     return cantidad < MAX_LETRA_COLUMNA
 
@@ -75,7 +75,7 @@ def bajar(lista, posiciones):
         posicion = posiciones[i]
         nuevoY = posicion[1]+DISTANCIA_MIN+1
         if nuevoY<(PISO-10):
-            posiciones[i] = (posicion[0],nuevoY)
+            posiciones[i] = (posicion[X],nuevoY)
         else:
             indicesBorrar.append(i)
     borrar(lista,posiciones,indicesBorrar)
@@ -97,7 +97,7 @@ def estaCerca(elem, lista):
 
     # |posicion1 - posicion2| = distancia entre las dos posiciones
     for posicion in lista:
-        if abs(elem[0] - posicion[0]) <= DISTANCIA_MIN and abs(elem[1] - posicion[1]) <= DISTANCIA_MIN:
+        if abs(elem[X] - posicion[X]) <= DISTANCIA_MIN and abs(elem[Y] - posicion[Y]) <= DISTANCIA_MIN:
             return True
     return False
 
@@ -107,10 +107,11 @@ def Puntos(candidata):
     consonDif = ["j","k","q","w","x","y","z"]
     consonFac = ["b","c","d","f","g","h","l","m","n","ñ","p","r","s","t","v"]
     puntos = 0
-    for letra in candidata:
-        puntos = puntos + vecesEnLista(vocales, letra) * 1
-        puntos = puntos + vecesEnLista(consonDif, letra) * 5
-        puntos = puntos + vecesEnLista(consonFac, letra) * 2
+
+    puntos = puntos + vecesEnPalabra(vocales, candidata) * VALORVOCAL
+    puntos = puntos + vecesEnPalabra(consonDif, candidata) * VALORCONSONDIF
+    puntos = puntos + vecesEnPalabra(consonFac, candidata) * VALORCONSONFAC
+
     return puntos
 
 def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
@@ -162,6 +163,13 @@ def vecesEnLista(lista, elem_a_buscar):
     for elem in lista:
         if elem == elem_a_buscar:
             cantidad = cantidad + 1
+    return cantidad
+
+def vecesEnPalabra(lista, palabra):
+    # Toma una palabra y busca la cantidad de elementos de una lista que contiene esta.
+    cantidad = 0
+    for letra in palabra:
+        cantidad = cantidad + vecesEnLista(lista, letra)
     return cantidad
 
 def dondeEsta(lista, elem_a_buscar):
