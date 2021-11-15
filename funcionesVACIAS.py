@@ -107,10 +107,11 @@ def Puntos(candidata):
     consonDif = ["j","k","q","w","x","y","z"]
     consonFac = ["b","c","d","f","g","h","l","m","n","ñ","p","r","s","t","v"]
     puntos = 0
-    for letra in candidata:
-        puntos = puntos + vecesEnLista(vocales, letra) * 1
-        puntos = puntos + vecesEnLista(consonDif, letra) * 5
-        puntos = puntos + vecesEnLista(consonFac, letra) * 2
+
+    puntos = puntos + vecesEnPalabra(vocales, candidata) * 1
+    puntos = puntos + vecesEnPalabra(consonDif, candidata) * 5
+    puntos = puntos + vecesEnPalabra(consonFac, candidata) * 2
+
     return puntos
 
 def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
@@ -158,6 +159,13 @@ def vecesEnLista(lista, elem_a_buscar):
     for elem in lista:
         if elem == elem_a_buscar:
             cantidad = cantidad + 1
+    return cantidad
+
+def vecesEnPalabra(lista, palabra):
+    # Toma una palabra y busca la cantidad de elementos de una lista que contiene esta.
+    cantidad = 0
+    for letra in palabra:
+        cantidad = cantidad + vecesEnLista(lista, letra)
     return cantidad
 
 def dondeEsta(lista, elem_a_buscar):
