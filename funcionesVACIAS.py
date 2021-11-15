@@ -120,6 +120,10 @@ def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
     if esValida(lista, candidata, listaIzq, listaMedio, listaDerecha) == True:
         puntos = Puntos(candidata)
         lista.pop(dondeEsta(lista, candidata))
+        ##sounds("acierto")
+##    else:
+##        sounds("fallo")
+
     return puntos
 
 

@@ -8,12 +8,30 @@ from configuracion import *
 from funcionesVACIAS import *
 from extras import *
 
+
+def sounds(tipo):
+    pygame.mixer.init()
+    sonidoFallo = pygame.mixer.Sound("Sonidos/fallo.mp3")
+    sonidoAcierto = pygame.mixer.Sound("Sonidos/acierto.mp3")
+    sonidoFinTiempo = pygame.mixer.Sound("Sonidos/terminoElTiempo.mp3")
+    if tipo == "fallo":
+        sonidoFallo.play()
+    if tipo == "acierto":
+        sonidoAcierto.play()
+    if tipo == "finTiempo":
+        sonidoFinTiempo.play()
+
 #Funcion principal
 def main():
         #Centrar la ventana y despues inicializar pygame
         os.environ["SDL_VIDEO_CENTERED"] = "1"
         pygame.init()
         #pygame.mixer.init()
+        #pygame.mixer.music.load("musicaFondo.mp3")
+        #pygame.mixer.music.play() ##admite entero, cantidad de veces que repite el sonido
+
+
+
 
         #Preparar la ventana
         pygame.display.set_caption("Armar palabras...")
@@ -89,6 +107,7 @@ def main():
 
             actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq,
                 posicionesMedio, posicionesDer)
+        sounds("finTiempo")
 
         while 1:
             #Esperar el QUIT del usuario
