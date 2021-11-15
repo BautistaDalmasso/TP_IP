@@ -10,11 +10,7 @@ COLOR_LETRAS = (20,200,20)
 COLOR_FONDO = (0,0,0)
 COLOR_TEXTO = (200,200,200)
 COLOR_TIEMPO_FINAL = (200,20,10)
-#comentario de prueba, borrar
 
-##posicionesIzq=[] #de 5 a 261
-##posicionesMedio=[] #de 271 a 527
-##posicionesDer=[] #de 537 a 793
 INICIO_IZQ=5
 FIN_IZQ=250
 
@@ -30,4 +26,8 @@ DISTANCIA_MIN = 10
 MAX_LETRA_COLUMNA = 9
 
 PISO = 527
+
+VALORVOCAL = 1
+VALORCONSONFAC = 2
+VALORCONSONDIF = 5
 

@@ -108,9 +108,9 @@ def Puntos(candidata):
     consonFac = ["b","c","d","f","g","h","l","m","n","ñ","p","r","s","t","v"]
     puntos = 0
 
-    puntos = puntos + vecesEnPalabra(vocales, candidata) * 1
-    puntos = puntos + vecesEnPalabra(consonDif, candidata) * 5
-    puntos = puntos + vecesEnPalabra(consonFac, candidata) * 2
+    puntos = puntos + vecesEnPalabra(vocales, candidata) * VALORVOCAL
+    puntos = puntos + vecesEnPalabra(consonDif, candidata) * VALORCONSONDIF
+    puntos = puntos + vecesEnPalabra(consonFac, candidata) * VALORCONSONFAC
 
     return puntos
 
