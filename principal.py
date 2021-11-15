@@ -36,7 +36,7 @@ def main():
         lista = [] ## guarda el lemario
 
         ELECCION = False
-        SECRETO = pygame.image.load("secreto.jpg").convert()
+        SECRETO = pygame.image.load("secreto.png").convert()
 
         archivo= open("lemario.txt","r",encoding='latin-1')
         for linea in archivo.readlines():
