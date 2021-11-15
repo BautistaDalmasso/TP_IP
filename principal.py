@@ -35,6 +35,9 @@ def main():
         posicionesDer = []
         lista = [] ## guarda el lemario
 
+        ELECCION = False
+        SECRETO = pygame.image.load("secreto.png").convert()
+
         archivo= open("lemario.txt","r",encoding='latin-1')
         for linea in archivo.readlines():
             lista.append(linea[0:-1])
@@ -67,12 +70,16 @@ def main():
                         candidata = candidata[0:len(candidata)-1]
                     if e.key == K_RETURN:
                         puntos += procesar(lista, candidata, listaIzq, listaMedio, listaDer)
+                        if candidata == PALABRA_SECRETA:
+                            ELECCION = True
                         candidata = ""
 
             segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
 
             #Limpiar pantalla anterior
             screen.fill(COLOR_FONDO)
+            if ELECCION:
+                screen.blit(SECRETO,[0,0])
 
             #Dibujar de nuevo todo
             dibujar(screen, candidata, listaIzq, listaMedio, listaDer, posicionesIzq ,
