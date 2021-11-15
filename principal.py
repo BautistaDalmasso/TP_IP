@@ -79,7 +79,7 @@ def main():
             #Limpiar pantalla anterior
             screen.fill(COLOR_FONDO)
             if ELECCION:
-                screen.blit(SECRETO,[100,-100])
+                screen.blit(SECRETO,[0,0])
 
             #Dibujar de nuevo todo
             dibujar(screen, candidata, listaIzq, listaMedio, listaDer, posicionesIzq ,
