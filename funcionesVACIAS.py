@@ -73,7 +73,7 @@ def bajar(lista, posiciones):
     indicesBorrar = []
     for i in range(0,len(posiciones)):
         posicion = posiciones[i]
-        nuevoY = posicion[1]+DISTANCIA_MIN+1
+        nuevoY = posicion[Y]+DISTANCIA_MIN+1
         if nuevoY<(PISO-10):
             posiciones[i] = (posicion[X],nuevoY)
         else:
@@ -120,9 +120,9 @@ def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
     if esValida(lista, candidata, listaIzq, listaMedio, listaDerecha) == True:
         puntos = Puntos(candidata)
         lista.pop(dondeEsta(lista, candidata))
-        ##sounds("acierto")
-##    else:
-##        sounds("fallo")
+        sounds("acierto")
+    else:
+        sounds("fallo")
 
     return puntos
 
@@ -177,3 +177,15 @@ def dondeEsta(lista, elem_a_buscar):
         if lista[i] == elem_a_buscar:
             return i
     return -1
+
+def sounds(tipo):
+    pygame.mixer.init()
+    sonidoFallo = pygame.mixer.Sound("Sonidos/fallo.mp3")
+    sonidoAcierto = pygame.mixer.Sound("Sonidos/acierto.mp3")
+    sonidoFinTiempo = pygame.mixer.Sound("Sonidos/terminoElTiempo.mp3")
+    if tipo == "fallo":
+        sonidoFallo.play()
+    if tipo == "acierto":
+        sonidoAcierto.play()
+    if tipo == "finTiempo":
+        sonidoFinTiempo.play()

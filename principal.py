@@ -9,18 +9,6 @@ from funcionesVACIAS import *
 from extras import *
 
 
-def sounds(tipo):
-    pygame.mixer.init()
-    sonidoFallo = pygame.mixer.Sound("Sonidos/fallo.mp3")
-    sonidoAcierto = pygame.mixer.Sound("Sonidos/acierto.mp3")
-    sonidoFinTiempo = pygame.mixer.Sound("Sonidos/terminoElTiempo.mp3")
-    if tipo == "fallo":
-        sonidoFallo.play()
-    if tipo == "acierto":
-        sonidoAcierto.play()
-    if tipo == "finTiempo":
-        sonidoFinTiempo.play()
-
 #Funcion principal
 def main():
         #Centrar la ventana y despues inicializar pygame
