@@ -38,8 +38,8 @@ def borrar(lista,posiciones,indicesBorrar):
         posiciones.pop(indiceBorrar)
         lista.pop(indiceBorrar)
 
-# Se asegura de que haya espacio en la primera línea para agregar letras.
 def tieneEspacio(posiciones):
+    # Se asegura de que haya espacio en la primera línea para agregar letras.
     cantidad = 0
     for posicion in posiciones:
         if posicion[Y] == 35:
@@ -55,8 +55,6 @@ def cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicion
 
     i = 0
     for letra in palabra:
-        # Pueden llegar a salir palabras cortadas.
-        # TODO: ver si podemos evitar que se corten.
         if i <= cortes[0] and tieneEspacio(posicionesIzq):
             listaIzq.append(letra)
             posicionesIzq.append(generarPosicion(posicionesIzq,INICIO_IZQ,FIN_IZQ))
@@ -81,15 +79,15 @@ def bajar(lista, posiciones):
     borrar(lista,posiciones,indicesBorrar)
 
 def actualizar(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer):
-    ## llama a otras funciones para bajar bajar las letras, eliminar las que tocan el piso y
+    # llama a otras funciones para bajar bajar las letras, eliminar las que tocan el piso y
     # Previene que cargarListas se quede sin espacio para cargar más listas
     for i in range(2):
         bajar(listaIzq,posicionesIzq)
         bajar(listaMedio,posicionesMedio)
         bajar(listaDer,posicionesDer)
-    ## cargar nuevas letras a la pantalla (esto puede no hacerse todo el tiempo para que no se llene de letras la pantalla)
 
-    if random.randrange(1,101,1) < 30: ## acorta cantidad de palabras que aparecen
+    # cargar nuevas letras a la pantalla (esto puede no hacerse todo el tiempo para que no se llene de letras la pantalla)
+    if random.randrange(1,101,1) < 30: # acorta cantidad de palabras que aparecen
         cargarListas(lista, listaIzq, listaMedio, listaDer, posicionesIzq , posicionesMedio, posicionesDer)
 
 def estaCerca(elem, lista):
@@ -102,7 +100,7 @@ def estaCerca(elem, lista):
     return False
 
 def Puntos(candidata):
-    #devuelve el puntaje que le corresponde a candidata
+    # devuelve el puntaje que le corresponde a candidata
     vocales = ["a","e","i","o","u"]
     consonDif = ["j","k","q","w","x","y","z"]
     consonFac = ["b","c","d","f","g","h","l","m","n","ñ","p","r","s","t","v"]
@@ -115,7 +113,7 @@ def Puntos(candidata):
     return puntos
 
 def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
-    #chequea que candidata sea correcta en cuyo caso devuelve el puntaje y 0 si no es correcta
+    # chequea que candidata sea correcta en cuyo caso devuelve el puntaje y 0 si no es correcta
     puntos=0
     if esValida(lista, candidata, listaIzq, listaMedio, listaDerecha) == True:
         puntos = Puntos(candidata)
@@ -128,7 +126,7 @@ def procesar(lista, candidata, listaIzq, listaMedio, listaDerecha):
 
 
 def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
-    #devuelve True si candidata cumple con los requisitos
+    # devuelve True si candidata cumple con los requisitos
     if estaEnLista(lista, candidata):
         restoCandidata = candidata
         restoCandidata = acortarCandidata(restoCandidata,listaIzq)
@@ -140,7 +138,7 @@ def esValida(lista, candidata, listaIzq, listaMedio, listaDer):
 
 def acortarCandidata(restoCandidata, lista): ##listaIzq, Med o Der
     restoNuevo = restoCandidata
-    ## si la primera letra de restoCandidata está en lista, la quitamos
+    # si la primera letra de restoCandidata está en lista, la quitamos
     for caracter in restoCandidata:
         if not estaEnLista(lista,caracter):
             return restoNuevo
